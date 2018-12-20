@@ -1,5 +1,12 @@
 package coursework_helpdesk.model;
 
-//@Entity
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="d_roles")
 public class Role {
+
+    
+
 }

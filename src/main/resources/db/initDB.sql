@@ -8,7 +8,8 @@ create sequence global_seq start 10000;
 
 create table d_roles(
   id integer primary key default nextval('global_seq'),
-  name varchar not NULL
+  name varchar not NULL,
+  ident varchar not null
 );
 
 create table d_users(
