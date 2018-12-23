@@ -1,5 +1,6 @@
 package coursework_helpdesk.model;
 
+
 import javax.persistence.*;
 import java.util.Set;
 

@@ -18,10 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("coursework_helpdesk")
+@ComponentScan({"coursework_helpdesk.model","coursework_helpdesk.repository"})
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("coursework_helpdesk.repository")
 public class DataConfig {
@@ -34,11 +35,12 @@ public class DataConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "coursework_hepldesk.model" });
+        em.setPackagesToScan("coursework_helpdesk.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        //em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(additionalProperties());
+        em.afterPropertiesSet();
 
         return em;
     }
@@ -67,12 +69,12 @@ public class DataConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    /*Properties additionalProperties() {
+    Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+                "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         return properties;
-    }*/
+    }
 }
