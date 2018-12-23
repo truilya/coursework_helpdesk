@@ -1,6 +1,6 @@
 drop table IF EXISTS d_roles;
 drop table if exists d_users;
-drop table if exists ref_user_roles;
+drop table if exists user_roles;
 
 drop sequence if exists global_seq;
 
@@ -18,12 +18,15 @@ create table d_users(
   password varchar
 );
 
-create table ref_user_roles(
-  id_role integer,
-  id_user integer
+CREATE TABLE user_roles
+(
+  user_id INTEGER NOT NULL,
+  role    VARCHAR,
+  CONSTRAINT user_roles_idx UNIQUE (user_id, role),
+  FOREIGN KEY (user_id) REFERENCES d_users (id) ON DELETE CASCADE
 );
 
-alter table ref_user_roles add primary key (id_role, id_user);
+
 
 
 
