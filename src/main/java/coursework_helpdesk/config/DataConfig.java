@@ -71,7 +71,7 @@ public class DataConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        //properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty(
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
