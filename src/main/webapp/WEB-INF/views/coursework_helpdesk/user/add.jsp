@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PC
-  Date: 28.12.2018
-  Time: 6:11
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
     <title>User</title>
@@ -13,11 +8,11 @@
 <body>
 <h3>Please, enter the user attributes</h3>
 <form:form method="POST"
-           action="/coursework_helpdesk.model.User" modelAttribute="user">
+           action="update" modelAttribute="user">
     <table>
         <tr>
-            <td><form:label path="name">Name</form:label></td>
-            <td><form:input path="name"/></td>
+            <td><form:label path="login">Name</form:label></td>
+            <td><form:input path="login"/></td>
         </tr>
         <tr>
             <td><form:label path="password">
