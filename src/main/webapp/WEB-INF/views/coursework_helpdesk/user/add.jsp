@@ -8,7 +8,7 @@
 <body>
 <h3>Please, enter the user attributes</h3>
 <form:form method="POST"
-           action="update" modelAttribute="user">
+           action="save" modelAttribute="user">
     <table>
         <tr>
             <td><form:label path="login">Name</form:label></td>

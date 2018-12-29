@@ -8,10 +8,11 @@
 <body>
 <h3>Please, enter the user attributes</h3>
 <form:form method="POST"
-           action="update" modelAttribute="user">
+           action="save" modelAttribute="user">
+    <input type="hidden" name="id" value="${user.id}"/>
     <table>
         <tr>
-            <td><form:label path="login">Name</form:label></td>
+            <td><form:label path="login">Login</form:label></td>
             <td><form:input path="login"/></td>
         </tr>
         <tr>
