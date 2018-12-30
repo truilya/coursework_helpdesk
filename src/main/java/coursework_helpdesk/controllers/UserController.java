@@ -1,15 +1,14 @@
 package coursework_helpdesk.controllers;
 
+import coursework_helpdesk.model.Role;
 import coursework_helpdesk.model.User;
 import coursework_helpdesk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,9 +42,24 @@ public class UserController {
         return model;
     }
 
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") int id){
+        repository.delete(id);
+        return "redirect:list";
+    }
+
     @PostMapping("/save")
     public String save( User user){
         repository.save(user);
         return "redirect:list";
+    }
+
+    @ModelAttribute("roleList")
+    public List<String> getRoleList(){
+        List<String> roles = new ArrayList<>();
+        for (Role r : Role.values()){
+            roles.add(r.toString());
+        }
+        return roles;
     }
 }

@@ -23,13 +23,15 @@
             <tr>
                 <td>${user.login}</td>
                 <td>
-                <!--    <a href="edit/${user.id}">Edit</a>-->
                     <form:form action="edit" method="post">
                         <input type="hidden" name="id" value="${user.id}"/>
                         <button>Edit</button>
                     </form:form>
                 </td>
-                <td><a href="delete?id=${user.id}">Delete</a></td>
+                <td><form:form action="delete" method="post">
+                    <input type="hidden" name="id" value="${user.id}"/>
+                    <button>Delete</button>
+                </form:form></td>
             </tr>
         </c:forEach>
     </table>
