@@ -20,8 +20,10 @@
                 Password</form:label></td>
             <td><form:input path="password"/></td>
         </tr>
-        <td><form:label path="roles">Roles</form:label></td>
-        <td><form:checkboxes path="roles" items="${roleList}"/></td>
+        <tr>
+            <td><form:label path="roles">Roles</form:label></td>
+            <td><form:checkboxes path="roles" items="${roleList}"/></td>
+        </tr>
         <tr>
             <td><input type="submit" value="Submit"/></td>
         </tr>
