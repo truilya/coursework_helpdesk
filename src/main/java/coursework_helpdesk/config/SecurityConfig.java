@@ -16,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("user")
-                .password("password")
+                .password("123")
                 .roles("USER");
         auth
                 .inMemoryAuthentication()
@@ -37,6 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/coursework_helpdesk/user/**")
                 .access("hasRole('ROLE_ADMIN')")
+                .and()
+                .formLogin();
+
+
+        http
+                .authorizeRequests()
+                .antMatchers("/coursework_helpdesk/issue/**")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_ENGINEER')")
                 .and()
                 .formLogin();
     }
