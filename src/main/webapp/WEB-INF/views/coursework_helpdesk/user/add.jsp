@@ -17,7 +17,7 @@
         <tr>
             <td><form:label path="password">
                 Password</form:label></td>
-            <td><form:input path="password"/></td>
+            <td><form:password path="password"/></td>
         </tr>
         <td><form:label path="roles">Roles</form:label></td>
         <td><form:checkboxes path="roles" items="${roleList}"/></td>

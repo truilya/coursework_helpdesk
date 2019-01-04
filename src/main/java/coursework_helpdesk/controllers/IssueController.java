@@ -9,6 +9,7 @@ import coursework_helpdesk.repository.IssueRepository;
 import coursework_helpdesk.repository.IssueStatusRepository;
 import coursework_helpdesk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,14 +55,15 @@ public class IssueController {
     }
 
     @PostMapping("/save")
-    public String save(Issue issue,BindingResult bindingResult){
+    public String save(Issue issue,BindingResult bindingResult, Authentication authentication){
         if (bindingResult.hasErrors()){
             return "/list";
         }
         issue.setDateCreated(LocalDateTime.now());
         IssueStatus issueStatus = statusRepository.findOne(1); //sorry :'(
         issue.setIssueStatus(issueStatus);
-        User creator = userRepository.findOne(10001); //костыль
+        String creatorLogin = authentication.getName();
+        User creator = userRepository.findByLogin(creatorLogin); //костыль
         issue.setCreator(creator);
         repository.save(issue);
         return "redirect:list";

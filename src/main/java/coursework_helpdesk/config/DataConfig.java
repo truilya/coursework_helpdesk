@@ -34,7 +34,7 @@ public class DataConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(getDataSource());
         em.setPackagesToScan("coursework_helpdesk.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -46,7 +46,7 @@ public class DataConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource getDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driverClassName"));
         dataSource.setUrl(env.getProperty("spring.datasource.url"));

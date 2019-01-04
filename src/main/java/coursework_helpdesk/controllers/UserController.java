@@ -4,6 +4,7 @@ import coursework_helpdesk.model.Role;
 import coursework_helpdesk.model.User;
 import coursework_helpdesk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,15 @@ public class UserController {
 
     @PostMapping("/save")
     public String save( User user){
+        if (!user.isNew()) {
+            User oldUser = repository.findOne(user.getId());
+            if (!oldUser.getPassword().equals(user.getPassword())){
+                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            }
+        }
+        else {
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        }
         repository.save(user);
         return "redirect:list";
     }

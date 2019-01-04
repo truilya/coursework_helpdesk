@@ -6,10 +6,16 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -23,6 +29,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("iam_admin")
                 .password("123")
                 .roles("ADMIN");
+
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select login username, password, true enabled " +
+                        " from d_users where login=?")
+                .authoritiesByUsernameQuery("select du.login, 'ROLE_'||ur.role authority" +
+                        " from d_users du" +
+                        " join user_roles ur" +
+                        " on du.id=ur.user_id" +
+                        " where du.login=?")
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
