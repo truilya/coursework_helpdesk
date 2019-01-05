@@ -34,6 +34,9 @@
                 </form:form></td>
             </tr>
         </c:forEach>
+        <tr>
+            <td><button onclick="window.history.back()" type="button">Cancel</button></td>
+        </tr>
     </table>
 </section>
 </body>

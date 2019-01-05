@@ -24,6 +24,9 @@
         <tr>
             <td><input type="submit" value="Submit"/></td>
         </tr>
+        <tr>
+            <td><button onclick="window.history.back()" type="button">Cancel</button></td>
+        </tr>
     </table>
 </form:form>
 </body>
