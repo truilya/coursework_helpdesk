@@ -34,8 +34,8 @@ delete from status_roles;
 
 insert into status_roles(status_id,role)
     select t.status_id, t.rol from
-        (select 1 status_id, 'USER' rol
-         union all
+        (/*select 1 status_id, 'USER' rol
+         union all*/
          select 4 status_id, 'USER' rol
          union all
          select 6 status_id, 'USER' rol

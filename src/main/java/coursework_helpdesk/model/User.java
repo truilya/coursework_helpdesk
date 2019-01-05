@@ -2,6 +2,8 @@ package coursework_helpdesk.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -59,6 +61,15 @@ public class User extends BaseEntity{
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public List<Role> getRolesList(){
+        List<Role> result = new ArrayList<>();
+        for (Role r :
+                getRoles()) {
+            result.add(r);
+        }
+        return result;
     }
 
     public void setRoles(Set<Role> roles) {

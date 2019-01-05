@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://coursework_helpdesk/functions" prefix="f" %>
 <html>
 <head>
     <title>Issues</title>
@@ -29,7 +30,7 @@
             <tr>
                 <td>${issue.id}</td>
                 <td>${issue.name}</td>
-                <td>${issue.dateCreated}</td>
+                <td> ${f:formatLocalDateTime(issue.dateCreated, "dd.MM.yyyy")} </td>
                 <td>${issue.issuePriority.name}</td>
                 <td>${issue.issueStatus.name}</td>
                 <td>${issue.creator.login}</td>

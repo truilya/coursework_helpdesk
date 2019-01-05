@@ -1,5 +1,9 @@
 package coursework_helpdesk.config;
 
+import coursework_helpdesk.config.converters.DateConverter;
+import coursework_helpdesk.config.converters.PriorityConverter;
+import coursework_helpdesk.config.converters.StatusConverter;
+import coursework_helpdesk.config.converters.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
@@ -50,5 +54,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter((PriorityConverter)appContext.getBean("priorityConverter"));
         registry.addConverter((StatusConverter)appContext.getBean("statusConverter"));
+        registry.addConverter((UserConverter)appContext.getBean("userConverter"));
+        registry.addConverter((DateConverter)appContext.getBean("dateConverter"));
     }
 }

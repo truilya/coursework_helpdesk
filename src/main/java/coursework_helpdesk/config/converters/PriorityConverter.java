@@ -1,4 +1,4 @@
-package coursework_helpdesk.config;
+package coursework_helpdesk.config.converters;
 
 import coursework_helpdesk.model.IssuePriority;
 import coursework_helpdesk.repository.IssuePriorityRepository;
