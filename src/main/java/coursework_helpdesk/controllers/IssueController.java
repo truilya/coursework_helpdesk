@@ -79,7 +79,7 @@ public class IssueController {
             return "/list";
         }
         Issue oldIssue = repository.findOne(issue.getId());
-        if (issue.getIssueStatus().getId()==-1){
+        if (issue.getIssueStatus()==null || issue.getIssueStatus().getId()==-1){
             issue.setIssueStatus(oldIssue.getIssueStatus());
         }
         repository.save(issue);

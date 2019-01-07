@@ -7,6 +7,7 @@
     <title>Issues</title>
 </head>
 <body>
+<a href="/logout">Logout</a>
 <section>
     <h2>Issues</h2>
     <hr/>

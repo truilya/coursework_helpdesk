@@ -12,7 +12,7 @@ public class DateConverter implements Converter<String, LocalDateTime> {
 
     @Override
     public LocalDateTime convert(String s)  {
-        DateTimeFormatter format =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm");
+        DateTimeFormatter format =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         return LocalDateTime.parse(s,format);
     }
 }

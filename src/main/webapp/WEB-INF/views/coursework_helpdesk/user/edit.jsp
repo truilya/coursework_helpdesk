@@ -6,6 +6,7 @@
     <title>User</title>
 </head>
 <body>
+<a href="/logout">Logout</a>
 <h3>Please, enter the user attributes</h3>
 <form:form method="POST"
            action="save" modelAttribute="user">

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         " on du.id=ur.user_id" +
                         " where du.login=?")
                 .passwordEncoder(new BCryptPasswordEncoder());
+
     }
 
     @Override
@@ -60,7 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/coursework_helpdesk/user/**")
                 .access("hasRole('ROLE_ADMIN')")
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .logout()
+                .logoutUrl("/coursework_helpdesk/index")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
 
         http
@@ -68,7 +74,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/coursework_helpdesk/issue/**")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_ENGINEER')")
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .logout()
+                .logoutUrl("/coursework_helpdesk/index")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
     }
 
 

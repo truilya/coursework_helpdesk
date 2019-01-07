@@ -6,6 +6,7 @@
     <title>Users</title>
 </head>
 <body>
+<a href="/logout">Logout</a>
 <section>
     <h2>Users</h2>
     <hr/>
