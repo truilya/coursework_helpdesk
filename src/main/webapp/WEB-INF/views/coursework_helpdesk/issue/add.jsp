@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td><form:label path="description">Description</form:label></td>
-            <td><form:textarea path="description" rows="5" size="200"/></td>
+            <td><form:textarea path="description" rows="5" size="1000"/></td>
         </tr>
         <tr>
             <td> <form:select name="issuePriority" path="issuePriority" id="issuePriority">

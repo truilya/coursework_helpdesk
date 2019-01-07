@@ -7,8 +7,8 @@
     <title>Issue</title>
 </head>
 <body>
-<h3>Please, enter the issue attributes</h3>
 <a href="/logout">Logout</a>
+<h3>Please, enter the issue attributes</h3>
 <form:form method="post" action="saveUpdate" modelAttribute="issue">
     <input type="hidden" name="id" value="${issue.id}"/>
     <input type="hidden" name="dateCreated" value="${issue.dateCreated}"/>

@@ -12,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +72,7 @@ public class IssueController {
     }
 
     @PostMapping("/saveUpdate")
-    public String saveUpdate(Issue issue, BindingResult bindingResult, Authentication authentication){
+    public String saveUpdate(Issue issue, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "/list";
         }

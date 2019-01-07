@@ -53,8 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/protected/**")
-                .access("hasRole('ROLE_USER')")
+                .antMatchers("/coursework_helpdesk/index")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_ENGINEER') or hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin();
         http

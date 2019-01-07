@@ -6,16 +6,19 @@
     <title>helpdesk</title>
 </head>
 <body>
-    <div class="container">
-        <h1>This is secured!</h1>
-        <p>
-            Hello <b><c:out value="${pageContext.request.remoteUser}"/></b>
-        </p>
-        <c:url var="logoutUrl" value="/logout"/>
-        <form class="form-inline" action="${logoutUrl}" method="post">
-            <input type="submit" value="Log out"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-    </div>
+    <section>
+        <h2>This is Helpdesk!</h2>
+        <c:forEach items="${roles}" var="role">
+            <c:if test="${role=='ADMIN'}">
+                <a href="/coursework_helpdesk/user/list">Users</a>
+            </c:if>
+            <c:if test="${role=='USER'}">
+                <a href="/coursework_helpdesk/issue/list">Issues</a>
+            </c:if>
+            <c:if test="${role=='ENGINEER'}">
+                <a href="/coursework_helpdesk/issue/list">Issues</a>
+            </c:if>
+        </c:forEach>
+    </section>
 </body>
 </html>
