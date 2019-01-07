@@ -23,6 +23,16 @@
             <td>${issue.creator.login}</td>
         </tr>
         <tr>
+            <td><form:label path="engineer">Current engineer</form:label></td>
+            <td>${issue.engineer.login}</td>
+        </tr>
+        <tr>
+            <td><form:label path="engineer">Engineer</form:label></td>
+            <td> <form:select name="engineer" path="engineer" id="engineer">
+                <form:options items="${engineerList}" itemLabel="login" itemValue="id"/>
+            </form:select></td>
+        </tr>
+        <tr>
             <td><form:label path="name">Name</form:label></td>
             <td><form:input path="name" size="100"/></td>
         </tr>
@@ -45,6 +55,10 @@
             <td> <form:select name="issueStatus" path="issueStatus" id="issueStatus">
                 <form:options items="${issueStatusList}" itemLabel="name" itemValue="id"/>
             </form:select></td>
+        </tr>
+        <tr>
+            <td>Your comment for change</td>
+            <td><textarea rows="5" cols="100" name="comment">Please, input Your comment with changes of issue attributes</textarea></td>
         </tr>
         <tr>
             <td><input type="submit" value="Save"/></td>

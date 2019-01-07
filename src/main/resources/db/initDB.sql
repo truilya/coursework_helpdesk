@@ -70,14 +70,23 @@ create table issue
 
 create table issue_history
 (
+  id integer primary key default nextval('global_seq'),
   issue_id integer not null,
   date_change date not null,
-  user_action_id integer,
+  creator_id integer,
   engineer_id integer,
   name varchar,
   description varchar,
   priority_id integer,
-  status_id integer
+  status_id integer,
+  changer_id integer,
+  comment_txt varchar,
+  foreign key (priority_id) references d_priority (id) on delete cascade,
+  foreign key (status_id) references d_status (id) on delete cascade,
+  foreign key (creator_id) references d_users (id),
+  foreign key (engineer_id) references d_users (id),
+  foreign key (cnanger_id) references d_users (id),
+  foreign key (issue_id) references issue (id) on delete cascade
 );
 
 

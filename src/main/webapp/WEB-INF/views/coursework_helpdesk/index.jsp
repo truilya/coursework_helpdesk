@@ -10,13 +10,16 @@
         <h2>This is Helpdesk!</h2>
         <c:forEach items="${roles}" var="role">
             <c:if test="${role=='ADMIN'}">
-                <a href="/coursework_helpdesk/user/list">Users</a>
+                </b><a href="/coursework_helpdesk/user/list">Users</a>
+                <br>
             </c:if>
             <c:if test="${role=='USER'}">
                 <a href="/coursework_helpdesk/issue/list">Issues</a>
+                <br>
             </c:if>
             <c:if test="${role=='ENGINEER'}">
                 <a href="/coursework_helpdesk/issue/list">Issues</a>
+                <br>
             </c:if>
         </c:forEach>
     </section>

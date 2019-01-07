@@ -2,6 +2,9 @@ package coursework_helpdesk.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="issue")
@@ -31,6 +34,10 @@ public class Issue extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="priority_id")
     private IssuePriority issuePriority;
+
+    @OneToMany(mappedBy = "issue")
+    @ElementCollection(fetch = FetchType.LAZY)
+    private Set<IssueHistory> issueHistory;
 
     public Issue() {
     }
@@ -105,4 +112,16 @@ public class Issue extends BaseEntity {
     public void setIssuePriority(IssuePriority issuePriority) {
         this.issuePriority = issuePriority;
     }
+
+   /* public Set<IssueHistory> getIssueHistory() {
+        return issueHistory;
+    }
+
+    public void setIssueHistory(Set<IssueHistory> issueHistory) {
+        this.issueHistory = issueHistory;
+    }
+
+    public List<IssueHistory> getIssueHistoryList(){
+        return this.issueHistory.stream().collect(Collectors.toList());
+    }*/
 }
