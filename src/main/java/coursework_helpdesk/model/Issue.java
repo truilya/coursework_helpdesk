@@ -1,5 +1,7 @@
 package coursework_helpdesk.model;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -113,7 +115,7 @@ public class Issue extends BaseEntity {
         this.issuePriority = issuePriority;
     }
 
-   /* public Set<IssueHistory> getIssueHistory() {
+   public Set<IssueHistory> getIssueHistory() {
         return issueHistory;
     }
 
@@ -122,6 +124,7 @@ public class Issue extends BaseEntity {
     }
 
     public List<IssueHistory> getIssueHistoryList(){
-        return this.issueHistory.stream().collect(Collectors.toList());
-    }*/
+        Set<IssueHistory> issueHistorySet = getIssueHistory();
+        return issueHistorySet.stream().collect(Collectors.toList());
+    }
 }

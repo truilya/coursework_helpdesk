@@ -54,6 +54,7 @@ public class IssueController {
     public Model edit(@RequestParam("id") int id, Model model){
         Issue issue = repository.findOne(id);
         model.addAttribute("issue",issue);
+        model.addAttribute("issueHistoryList",issue.getIssueHistory());
         return model;
     }
 
