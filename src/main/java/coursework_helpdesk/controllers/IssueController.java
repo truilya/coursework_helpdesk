@@ -51,11 +51,22 @@ public class IssueController {
 
     @PostMapping("/edit")
     public Model edit(@RequestParam("id") int id, Model model){
+        setModelAttrForEditAndShow(id, model);
+        return model;
+    }
+
+    @PostMapping("/show")
+    public Model show(@RequestParam("id") int id, Model model){
+        setModelAttrForEditAndShow(id, model);
+        return model;
+    }
+
+    private void setModelAttrForEditAndShow(int id, Model model){
         Issue issue = repository.findOne(id);
         model.addAttribute("issue",issue);
         List<IssueHistory> issueHistoryList = issueHistoryRepository.findByIssueIdOrderByIdDesc(issue.getId());
-        model.addAttribute("issueHistoryList",issueHistoryList);//issue.getIssueHistory());
-        return model;
+        model.addAttribute("issueHistoryList",issueHistoryList);
+
     }
 
     @PostMapping("/save")

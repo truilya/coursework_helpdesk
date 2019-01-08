@@ -23,7 +23,7 @@
             <th>Status</th>
             <th>Creator</th>
             <th>Engineer</th>
-            <th colspan="1">Action</th>
+            <th colspan="2">Action</th>
         </tr>
         </thead>
         <c:forEach items="${issues}" var="issue">
@@ -42,7 +42,12 @@
                         <button>Edit</button>
                     </form:form>
                 </td>
-
+                <td>
+                    <form:form action="show" method="post">
+                        <input type="hidden" name="id" value="${issue.id}"/>
+                        <button>Show</button>
+                    </form:form>
+                </td>
             </tr>
         </c:forEach>
         <tr>
