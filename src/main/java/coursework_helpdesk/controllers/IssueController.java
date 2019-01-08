@@ -2,6 +2,8 @@ package coursework_helpdesk.controllers;
 
 import coursework_helpdesk.model.*;
 import coursework_helpdesk.repository.*;
+import coursework_helpdesk.util.Dates;
+import coursework_helpdesk.util.Listes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +43,34 @@ public class IssueController {
     public Model getAllIssue(Model model){
         List<Issue> issues = repository.findAll();
         model.addAttribute("issues",issues);
+        IssueFilter issueFilter = new IssueFilter();
+        model.addAttribute("issueFilter",issueFilter);
+        return model;
+    }
+    
+    @PostMapping("/list")
+    public Model getFilteredIssue(Model model,
+                                   @RequestParam(value = "startDate",required = false) String startDate,
+                                   @RequestParam(value = "endDate",required = false) String endDate,
+                                   @RequestParam(value = "issueStatuses",required = false) List<IssueStatus> issueStatusList,
+                                   @RequestParam(value = "issuePriorities",required = false) List<IssuePriority> issuePriorityList,
+                                   @RequestParam(value = "creators",required = false) List<User> creatorList,
+                                   @RequestParam(value = "engineers",required = false) List<User> engineerList){
+        List<Integer> statuses = Listes.getListInteger(issueStatusList);
+        List<Integer> priorities = Listes.getListInteger(issuePriorityList);
+        List<Integer> creators = Listes.getListInteger(creatorList);
+        List<Integer> engineers = Listes.getListInteger(engineerList);
+        String localStartDate = "".equals(startDate) ?"2000-01-01" :startDate;
+        String localEndDate = "".equals(endDate) ?"2099-01-01" :endDate;
+        List<Issue> filteredIssue = repository.findByFilter(localStartDate,
+                localEndDate,
+                statuses,
+                priorities,
+                creators,
+                engineers);
+        model.addAttribute("issues",filteredIssue);
+        IssueFilter issueFilter = new IssueFilter();
+        model.addAttribute("issueFilter",issueFilter);
         return model;
     }
 
@@ -120,9 +151,20 @@ public class IssueController {
         return statuses;
     }
 
+    @ModelAttribute("allIssueStatusList")
+    public List<IssueStatus> getAllStatusList(){
+        List<IssueStatus> statuses = statusRepository.findAll();
+        return statuses;
+    }
+
     @ModelAttribute("engineerList")
     public List<User> getEngineerList(){
         return userRepository.findAllUserByRole(Role.ENGINEER.name());
+    }
+
+    @ModelAttribute("userList")
+    public List<User> getUserList(){
+        return userRepository.findAll();
     }
 
 }

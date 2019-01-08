@@ -10,6 +10,45 @@
 <a href="/logout">Logout</a>
 <section>
     <h2>Issues</h2>
+    <form:form method="post" action="list" modelAttribute="issueFilter">
+        <table>
+            <thead>
+            <tr>
+                <th>Start date created</th>
+                <th>End date created</th>
+                <th>Current status</th>
+                <th>Priority</th>
+                <th>Creator</th>
+                <th>Current engineer</th>
+            </tr>
+            </thead>
+            <tr>
+                <td><input type="date" name="startDate" value="${param.startDate}"></td>
+                <td><input type="date" name="endDate" value="${param.endDate}"></td>
+                <td>
+                    <form:select multiple="true" path="issueStatuses"  name="issueStatuses" id="issueStatuses">
+                        <form:options items="${allIssueStatusList}" itemLabel="name" itemValue="id"/>
+                    </form:select>
+                </td>
+                <td>
+                    <form:select multiple="true"  name="issuePriorities" path="issuePriorities" id="issuePriorities">
+                        <form:options items="${issuePriorityList}" itemLabel="name" itemValue="id"/>
+                    </form:select>
+                </td>
+                <td>
+                    <form:select multiple="true"  name="creators" path="creators" id="creators">
+                        <form:options items="${userList}" itemLabel="login" itemValue="id"/>
+                    </form:select>
+                </td>
+                <td>
+                    <form:select  multiple="true" name="engineers" path="engineers" id="engineers">
+                        <form:options items="${engineerList}" itemLabel="login" itemValue="id"/>
+                    </form:select>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Filter</button>
+    </form:form>
     <hr/>
     <a href="add">New Issue</a>
     <hr/>
