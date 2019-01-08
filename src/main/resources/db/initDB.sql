@@ -89,6 +89,11 @@ create table issue_history
   foreign key (issue_id) references issue (id) on delete cascade
 );
 
+create table status_ref (
+  id integer,
+  ref_id integer
+);
+
 
 
 

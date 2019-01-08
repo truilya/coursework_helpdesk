@@ -47,3 +47,46 @@ insert into status_roles(status_id,role)
          select 3 status_id, 'ENGINEER' rol
          union all
          select 5 status_id, 'ENGINEER' rol) t;
+
+delete from status_ref;
+
+insert into status_ref(id,ref_id)
+  select 1 id, 2 ref_id
+  union all
+  select 1 id, 3 ref_id
+  union all
+  select 1 id, 4 ref_id
+  union all
+  select 1 id, 7 ref_id
+  union all
+  select 2 id, 3 ref_id
+  union all
+  select 2 id, 4 ref_id
+  union all
+  select 2 id, 5 ref_id
+  union all
+  select 2 id, 7 ref_id
+  union all
+  select 3 id, 2 ref_id
+  union all
+  select 4 id, 2 ref_id
+  union all
+  select 4 id, 7 ref_id
+  union all
+  select 5 id, 6 ref_id
+  union all
+  select 5 id, 7 ref_id
+  union all
+  select 1 id, 1 ref_id
+  union all
+  select 2 id, 2 ref_id
+  union all
+  select 3 id, 3 ref_id
+  union all
+  select 4 id, 4 ref_id
+  union all
+  select 5 id, 5 ref_id
+  union all
+  select 6 id, 6 ref_id
+  union all
+  select 7 id, 7 ref_id;
