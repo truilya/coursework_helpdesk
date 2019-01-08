@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +53,8 @@ public class IssueController {
     public Model edit(@RequestParam("id") int id, Model model){
         Issue issue = repository.findOne(id);
         model.addAttribute("issue",issue);
-        model.addAttribute("issueHistoryList",issue.getIssueHistory());
+        List<IssueHistory> issueHistoryList = issueHistoryRepository.findByIssueIdOrderByIdDesc(issue.getId());
+        model.addAttribute("issueHistoryList",issueHistoryList);//issue.getIssueHistory());
         return model;
     }
 

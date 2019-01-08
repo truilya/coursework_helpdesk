@@ -1,7 +1,5 @@
 package coursework_helpdesk.model;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
