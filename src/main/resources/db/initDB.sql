@@ -85,7 +85,7 @@ create table issue_history
   foreign key (status_id) references d_status (id) on delete cascade,
   foreign key (creator_id) references d_users (id),
   foreign key (engineer_id) references d_users (id),
-  foreign key (cnanger_id) references d_users (id),
+  foreign key (changer_id) references d_users (id),
   foreign key (issue_id) references issue (id) on delete cascade
 );
 
